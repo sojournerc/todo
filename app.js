@@ -32,9 +32,10 @@ app.use(hbs.middleware({
 }));
 
 // serve static assets
-app.use(serve(__dirname + '/public'), {
-  maxage: '300'
-});
+var cache_control = 300000; // 5min in millis
+app.use(serve(__dirname + '/public', {
+  maxage: cache_control
+}));
 
 // mount api
 app.use(mount('/api', api));
