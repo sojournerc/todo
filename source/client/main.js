@@ -13,7 +13,8 @@ require('es6-promise').polyfill()
 
 // get bootstrap data
 var bootstrap = {}
-_.each(document.querySelector('#bootstrap').childNodes, function (child) {
+var bootstrapEl = document.querySelector('#bootstrap')
+_.each(bootstrapEl.childNodes, function (child) {
   var path = child.getAttribute('data-path');
   if (path) {
     try {
@@ -21,6 +22,7 @@ _.each(document.querySelector('#bootstrap').childNodes, function (child) {
     } catch (err) {}
   }
 });
+bootstrapEl.parentElement.removeChild(bootstrapEl);
 commander.setTasks(bootstrap.tasks);
 
 var el = document.querySelector('#content');

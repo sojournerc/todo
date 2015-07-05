@@ -76,6 +76,7 @@ module.exports = React.createClass({
       <Input 
         type='checkbox' 
         checked={this.state.status}
+        title='toggle status'
         onChange={this.handleStatusToggle}
         disabled={this.state.editing}
       />
@@ -101,12 +102,12 @@ module.exports = React.createClass({
       <span onClick={this.onEdit}>{this.props.task.task}</span>}
       <span className="task-controls">
         {this.state.editing &&
-        <a href="#" onClick={this.onCancel}><i className="fa fa-close"/></a>
+        <a href="#" onClick={this.onCancel} title="cancel"><i className="fa fa-close"/></a>
         ||
         <span>
-          <a href="#" onClick={this.onEdit}><i className="fa fa-pencil"/></a>
+          <a href="#" onClick={this.onEdit} title="edit"><i className="fa fa-pencil"/></a>
           &nbsp;&nbsp;
-          <a href="#" onClick={this.onRemove}><i className="fa fa-trash"/></a>
+          <a href="#" onClick={this.onRemove} title="remove"><i className="fa fa-trash"/></a>
         </span>}
       </span>
     </div>

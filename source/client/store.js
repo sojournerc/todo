@@ -1,14 +1,9 @@
-/*******************************************************************************
- * @copyright (c) Wayin, Inc. All Rights Reserved.
- ******************************************************************************/
 'use strict';
 
-var _ = require('lodash');
-var EventEmitter = require('events').EventEmitter;
-
-var CHANGE_EVENT = 'change';
-
-var _store = {};
+var _ = require('lodash')
+  , EventEmitter = require('events').EventEmitter
+  , CHANGE_EVENT = 'change'
+  , _store = {}
 
 var Store = _.extend({}, EventEmitter.prototype, {
   getTasks: function () {
