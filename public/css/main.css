@@ -6774,9 +6774,13 @@ body {
 .pull-right {
   float: right;
 }
+#content {
+  max-width: 600px;
+  margin: 0 auto;
+}
 .task {
   position: relative;
-  padding-right: 4em;
+  padding-right: 2.5em;
   padding-left: 20px;
 }
 .task .checkbox,

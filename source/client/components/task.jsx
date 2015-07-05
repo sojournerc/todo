@@ -16,15 +16,18 @@ module.exports = React.createClass({
     }
   },
 
-  onEdit: function () {
+  onEdit: function (ev) {
+    ev.preventDefault()
     this.setState({editing: true})
   },
 
-  onCancel: function () {
+  onCancel: function (ev) {
+    ev.preventDefault()
     this.setState({editing: false})
   },
 
-  onRemove: function () {
+  onRemove: function (ev) {
+    ev.preventDefault()
     commander.removeTask(this.props.task)
   },
 
