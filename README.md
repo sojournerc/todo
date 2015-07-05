@@ -7,3 +7,8 @@ To use a database file instead of in-memory anonymous database set path to the f
 
     export TODO_DB_FILE=../todo.sql
 
+## run locally
+
+    $ git clone git@github.com:sojournerc/todo.git yourdir/
+    $ cd yourdir
+    $ npm install && npm start

@@ -4,15 +4,15 @@ var sqlite3 = require('sqlite3').verbose()
   ,  _ = require('lodash')
 
 // initialize the db
-var db = new sqlite3.Database(process.env.TODO_DB_FILE || ':memory:', function (err) {
+var dbPATH = process.env.TODO_DB_FILE || ':memory:';
+var db = new sqlite3.Database(dbPATH, function (err) {
   if (err) {
     console.log('ERROR OPENING DATABASE', err)
   } else {
     db.run("CREATE TABLE if not exists todo (id INTEGER PRIMARY KEY, task char(100) NOT NULL, status bool NOT NULL)", [])
-    console.log('database connection opened')
+    console.log(_.template('database connection opened to ${ path }')({ path: dbPATH }));
   }
 }); 
-
 
 module.exports = {
   findAll: function *() {
