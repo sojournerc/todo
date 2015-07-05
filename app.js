@@ -3,18 +3,21 @@
 var koa = require('koa')
   , logger = require('koa-logger')
   , serve = require('koa-static')
+  , compress = require('koa-compress')
   , mount = require('koa-mount')
   , router = require('koa-router')()
   , hbs  = require('koa-hbs')
-
-  , errors = require('./source/server/errors')
+  , zlib = require('zlib')
   , api = require('./source/server/api')
   , index = require('./source/server/index')
 
 var app = module.exports = koa();
 
 app.use(logger());
-app.use(errors());
+
+app.use(compress({
+  flush: zlib.Z_SYNC_FLUSH
+}));
 
 // templating
 hbs.registerHelper('json', function(obj){
@@ -29,7 +32,10 @@ app.use(hbs.middleware({
 }));
 
 // serve static assets
-app.use(serve(__dirname + '/public'));
+app.use(serve(__dirname + '/public'), {
+  maxage: '300'
+});
+
 // mount api
 app.use(mount('/api', api));
 

@@ -1,8 +1,37 @@
 
-@import url('../../../node_modules/bootstrap/less/variables.less');
-@import url('../../../node_modules/bootstrap/less/mixins.less');
-@import url('../../../node_modules/bootstrap/less/buttons.less');
+@import url('../../../node_modules/bootstrap/less/bootstrap.less');
 
 body {
-  color: #212121;
+  padding: 1em;
+}
+
+.no-tasks {
+  color: #ababab;
+}
+
+.pull-right {
+  float: right;
+}
+
+.task {
+  position: relative;
+  padding-right: 4em;
+  padding-left: 20px;
+  .checkbox,
+  .form-group {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  .task-controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .input-group-sm {
+    margin: -5px 0 ;
+  }
+  &.complete {
+    text-decoration: line-through;
+    color: #ccc;
+  }
 }

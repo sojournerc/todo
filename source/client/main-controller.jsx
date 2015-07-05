@@ -4,7 +4,7 @@ var React = require('react')
   , Store = require('./store')
 
   // components
-  , AddItem = require('./components/add-item.jsx')
+  , AddTask = require('./components/add-task.jsx')
   , List = require('./components/list.jsx')
 
 module.exports = React.createClass({
@@ -22,14 +22,10 @@ module.exports = React.createClass({
   },
 
   render: function () {
+    var tasks = Store.getTasks();
     return <section>
-      <h1>TODO:</h1>
-      <AddItem 
-
-      />
-      <List 
-
-      />
+      <AddTask />
+      <List  tasks={tasks} />
     </section> 
   }
 })

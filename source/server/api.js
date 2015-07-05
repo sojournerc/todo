@@ -2,27 +2,37 @@
 
 var koa = require('koa')
   , router = require('koa-router')()
-  , itemProvider = require('../providers/item.js')
+  , taskProvider = require('../providers/task-provider.js')
   , parse = require('co-body')
 
 var app = module.exports = koa()
+var TYPE = 'application/json; charset=utf-8';
 
-// user
-router.get('/items', function*() {
-  var data = yield parse(this);
-  yield itemProvider.findAndUpdate({_id: this.params[0]}, data);
+router.get('/tasks', function*() {
+  var tasks = yield taskProvider.findAll()
+  this.status = 200;
+  this.body = tasks;
+  this.type = TYPE;
 });
-router.post('/item', function*() {
+router.post('/task', function*() {
   var data = yield parse(this);
-  yield itemProvider.findAndUpdate({_id: this.params[0]}, data);
+  var persisted = yield taskProvider.insert(data)
+  this.status = 201;
+  this.body = persisted;
+  this.type = TYPE;
 });
-router.put('/item/*', function*() {
+router.put('/task/*', function*() {
   var data = yield parse(this);
-  yield itemProvider.findAndUpdate({_id: this.params[0]}, data);
+  var persisted = yield taskProvider.findOneAndUpdate(data);
+  this.status = 201;
+  this.body = persisted;
+  this.type = TYPE;
 });
-router.del('/item/*', function*() {
+router.del('/task/*', function*() {
   var data = yield parse(this);
-  yield itemProvider.findAndUpdate({_id: this.params[0]}, data);
+  yield taskProvider.findAndRemove(data);
+  this.status = 204;
+  this.type = TYPE;
 });
 
 app.use(router.routes());
