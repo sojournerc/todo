@@ -19,6 +19,12 @@ To watch and recompile client-side source files on change, in a seperate shell r
 
     $ gulp 
 
+### minification
+
+A pre-commit git hook will minify css and js using `gulp minifyJs` and `gulpMinifyCss` and the updated files will be included in your commit. 
+
+When the `NODE_ENV` environment variable is anything other than 'development' these minified files will be served.
+
 /////////////////////////////////
 
 The MIT License (MIT)

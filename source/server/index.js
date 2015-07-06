@@ -6,6 +6,7 @@ module.exports = function*() {
   var tasks = yield taskProvider.findAll()
   yield this.render('home', { 
     title: 'My Todo List',
-    tasks: tasks
+    tasks: tasks,
+    development: process.env.NODE_ENV === 'development'
   });
 }

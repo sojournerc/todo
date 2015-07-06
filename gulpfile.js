@@ -5,8 +5,11 @@ var browserify = require('browserify')
   , gulp = require('gulp')
   , less = require('gulp-less')
   , watchify = require('watchify')
+  , uglify = require('gulp-uglify')
+  , uglifyCss = require('gulp-uglifycss')
+  , rename = require('gulp-rename')
 
-gulp.task('bundleJs', function () {
+gulp.task('bundleJsDev', function () {
   function bundle(){
     console.log('bundling javascript')
     var bundling = bundler.bundle()
@@ -24,7 +27,7 @@ gulp.task('bundleJs', function () {
   return bundle()
 });
 
-gulp.task('bundleCss', function () {
+gulp.task('bundleCssDev', function () {
   function bundle(){
     console.log('bundling css')
     return gulp.src('./source/client/less/main.less')
@@ -36,4 +39,25 @@ gulp.task('bundleCss', function () {
   return bundle();
 });
 
-gulp.task('default', ['bundleJs', 'bundleCss']);
+gulp.task('minifyJs', function () {
+  return gulp.src('./public/js/main.js')
+    .pipe(uglify())
+    .pipe(rename("main.min.js"))
+    .pipe(gulp.dest('./public/js'));
+});
+
+gulp.task('minifyCss', function () {
+  return gulp.src('./public/css/main.css')
+    .pipe(uglifyCss())
+    .pipe(rename("main.min.css"))
+    .pipe(gulp.dest('./public/css'));
+});
+
+
+
+gulp.task('default', ['bundleJsDev', 'bundleCssDev']);
+
+
+
+
+

@@ -24,6 +24,11 @@ hbs.registerHelper('json', function(obj){
   var result = JSON.stringify(obj);
   return result;
 });
+hbs.registerHelper('if_eq', function(obj, value, block){
+  if (obj === value) {
+    return block(obj);
+  }
+});
 app.use(hbs.middleware({
     extname:".hbs",
     defaultLayout: 'index',
