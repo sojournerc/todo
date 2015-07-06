@@ -24,13 +24,15 @@ To watch and recompile client-side source files on change, in a seperate shell r
 
 When the `NODE_ENV` environment variable is anything other than 'development' these minified files will be served.
 
-To support minification copy the pre-commit git hook file from the repository into the git config, or add the contents of `pre-commit` if one already exists in `.git/hooks/`. i.e.
+To support minification copy `./pre-commit` git hook file into the git config,
 
     $ cp ./pre-commit ./.git/hooks/pre-commit
 
 And make sure it is executable
 
-    $ chmod +x ./.git/hooks/pre-commit 
+    $ chmod +x ./.git/hooks/pre-commit
+
+__OR__ if that file already exists in `.git/hooks/` add the contents of `./pre-commit` to the end of that file
 
 The pre-commit git hook will now minify css and js using `gulp minifyJs` and `gulpMinifyCss` and the updated files will be included in your commit. 
 
