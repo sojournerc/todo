@@ -1,6 +1,6 @@
 
 # TODO 
-A todo list using koa.js, React.js, Bootstrap, and sqlite3 configured to run on Redhat Openshift. Depends on Nodejs >= 0.12.5 and runs using the `--harmony` flag.
+A to-do list using koa.js, React.js, Bootstrap, and sqlite3 configured to run on Redhat Openshift. Depends on Nodejs >= 0.12.5 and runs using the `--harmony` flag.
 
 ### sqlite3 database
 To use a database file instead of in-memory anonymous database set path to the file as environment variable `TODO_DB_FILE`. Can be relative to working directory. i.e. 
@@ -11,19 +11,28 @@ To use a database file instead of in-memory anonymous database set path to the f
 
     $ git clone git@github.com:sojournerc/todo.git yourdir/
     $ cd yourdir
-    $ npm install && npm start
+    $ npm install
+    $ npm start
 
 Visit [localhost:5000](http://localhost:5000)
 
 To watch and recompile client-side source files on change, in a seperate shell run
 
-    $ gulp 
+    $ gulp
 
 ### minification
 
-A pre-commit git hook will minify css and js using `gulp minifyJs` and `gulpMinifyCss` and the updated files will be included in your commit. 
-
 When the `NODE_ENV` environment variable is anything other than 'development' these minified files will be served.
+
+To support minification copy the pre-commit git hook file from the repository into the git config, or add the contents of `pre-commit` if one already exists in `.git/hooks/`. i.e.
+
+    $ cp ./pre-commit ./git/hooks/pre-commit
+
+And make sure it is executable
+
+    $ chmod +x ./git/hooks/pre-commit 
+
+The pre-commit git hook will now minify css and js using `gulp minifyJs` and `gulpMinifyCss` and the updated files will be included in your commit. 
 
 /////////////////////////////////
 
