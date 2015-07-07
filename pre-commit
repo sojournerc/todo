@@ -1,0 +1,6 @@
+##!/bin/sh
+
+gulp minifyCss
+gulp minifyJs
+
+git add public/js/main.min.js public/css/main.min.css
